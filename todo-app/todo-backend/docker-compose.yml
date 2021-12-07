@@ -1,0 +1,8 @@
+version: '1.0'
+
+services:
+  todo-backend:
+    image: todo-backend
+    build: .
+    ports:
+      - 12600:12600
