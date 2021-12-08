@@ -4,3 +4,15 @@ Content-Type: application/json
 {
   "text": "test"
 }
+
+###
+DELETE  http://localhost:12600/todos/61af5ce7ecc226bb088639c4 HTTP/1.1
+
+###
+PUT  http://localhost:12600/todos/61b014948dbc774226306fb1 HTTP/1.1
+Content-Type: application/json
+
+{
+  "text": "test",
+  "done": true
+}
