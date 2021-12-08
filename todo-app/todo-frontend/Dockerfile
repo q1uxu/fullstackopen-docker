@@ -1,13 +1,25 @@
-# 构建
-FROM node:16 AS build-stage
+# 测试
+FROM node:16 AS test-stage
 
 WORKDIR /src/usr/app
 
 COPY . .
 
 ENV REACT_APP_BACKEND_URL=//localhost:12600
+ENV CI=true
 
 RUN npm ci
+
+RUN npm run test
+
+# 构建
+FROM node:16 AS build-stage
+
+WORKDIR /src/usr/app
+
+COPY --from=test-stage /src/usr/app /src/usr/app
+
+ENV REACT_APP_BACKEND_URL=//localhost:12600
 
 RUN npm run build
 
