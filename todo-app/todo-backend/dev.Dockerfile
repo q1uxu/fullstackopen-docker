@@ -4,6 +4,6 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN npm ci
+RUN npm install
 
-CMD PORT=12600 npm run start
+CMD npm run dev
