@@ -14,7 +14,7 @@ services:
     container_name: todo-nginx
     image: nginx
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - static_files:/usr/src/app/build
     ports:
       - 20080:80
