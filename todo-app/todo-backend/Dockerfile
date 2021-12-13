@@ -6,4 +6,4 @@ COPY . .
 
 RUN npm ci
 
-CMD PORT=12600 npm run start
+CMD npm run start

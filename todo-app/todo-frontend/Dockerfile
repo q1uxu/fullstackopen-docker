@@ -1,11 +1,10 @@
 # 测试
 FROM node:16 AS test-stage
 
-WORKDIR /src/usr/app
+WORKDIR /usr/src/app
 
 COPY . .
 
-ENV REACT_APP_BACKEND_URL=//localhost:12600
 ENV CI=true
 
 RUN npm ci
@@ -15,15 +14,8 @@ RUN npm run test
 # 构建
 FROM node:16 AS build-stage
 
-WORKDIR /src/usr/app
+WORKDIR /usr/src/app
 
-COPY --from=test-stage /src/usr/app /src/usr/app
-
-ENV REACT_APP_BACKEND_URL=//localhost:12600
+COPY --from=test-stage /usr/src/app /usr/src/app
 
 RUN npm run build
-
-# 运行
-FROM nginx
-
-COPY --from=build-stage /src/usr/app/build /usr/share/nginx/html
